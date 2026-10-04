@@ -1,3 +1,6 @@
 bun.lock
 out/
 tsconfig.tsbuildinfo
+dist/
+*.vsix
+node_modules/

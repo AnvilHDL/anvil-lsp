@@ -47,7 +47,7 @@ build-server() {
 build-vscode() {
     header "Building VSCode Extension..."
     cd ./extensions/vscode
-    npm install && npm run build:client
+    npm install && npm run build
     RESULT=$?
     RESULTS+=($RESULT)
     footer $RESULT

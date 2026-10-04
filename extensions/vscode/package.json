@@ -1,14 +1,32 @@
 {
-  "name": "anvil-lsp-vscode-extension",
-  "version": "0.0.0-development",
-  "description": "Anvil Language Server VS Code Extension",
+  "name": "anvil-lsp",
+  "displayName": "AnvilHDL",
+  "version": "0.1.0",
+  "description": "Language support for the AnvilHDL hardware description language: diagnostics, hover, navigation, completion and timing hints.",
+  "publisher": "anvilhdl",
   "author": "Wern Lim <dev@wern.cc>",
   "license": "MIT",
   "icon": "images/icon.png",
-  "main": "./client/out/extension",
-  "categories": [],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AnvilHDL/anvil-lsp.git"
+  },
+  "homepage": "https://anvil.kisp-lab.org/",
+  "bugs": {
+    "url": "https://github.com/AnvilHDL/anvil-lsp/issues"
+  },
+  "main": "./dist/extension.js",
+  "categories": [
+    "Programming Languages",
+    "Linters"
+  ],
   "keywords": [
-    "multi-root ready"
+    "anvil",
+    "anvilhdl",
+    "hdl",
+    "hardware",
+    "rtl",
+    "language server"
   ],
   "engines": {
     "vscode": "^1.100.0"
@@ -64,7 +82,10 @@
         },
         "anvil.showTimingInfo": {
           "scope": "window",
-          "default": { "asInlayHints": "condensed", "onHover": true },
+          "default": {
+            "asInlayHints": "condensed",
+            "onHover": true
+          },
           "description": "Controls how clock-cycle timing and expression lifetime information is shown in the editor.",
           "oneOf": [
             {
@@ -81,7 +102,11 @@
                   "oneOf": [
                     {
                       "type": "string",
-                      "enum": ["none", "condensed", "full"],
+                      "enum": [
+                        "none",
+                        "condensed",
+                        "full"
+                      ],
                       "enumDescriptions": [
                         "Do not show timing info as inlay hints.",
                         "Show timing info as compact prefixed and postfixed inlay hints.",
@@ -117,7 +142,11 @@
         },
         "anvil.showSyntaxHelp": {
           "scope": "window",
-          "default": { "onHover": true, "onAutocomplete": "anvilKeywords", "includeExamples": false },
+          "default": {
+            "onHover": true,
+            "onAutocomplete": "anvilKeywords",
+            "includeExamples": false
+          },
           "description": "Controls whether explanations of Anvil syntax are shown in hover tooltips and autocomplete popups.",
           "oneOf": [
             {
@@ -139,7 +168,11 @@
                   "oneOf": [
                     {
                       "type": "string",
-                      "enum": ["none", "anvilKeywords", "all"],
+                      "enum": [
+                        "none",
+                        "anvilKeywords",
+                        "all"
+                      ],
                       "enumDescriptions": [
                         "Never show explanations in autocomplete popups.",
                         "Show explanations only for built-in Anvil keywords and operators.",
@@ -185,7 +218,9 @@
   },
   "scripts": {
     "vscode:prepublish": "npm run build",
-    "build": "tsc -b",
+    "build": "tsc -b && node esbuild.mjs",
+    "package": "vsce package --no-dependencies",
+    "publish": "vsce publish --no-dependencies",
     "build:client": "cd client && tsc -b",
     "build:server": "cd server && npm run build",
     "watch": "tsc -b -w",
@@ -196,6 +231,8 @@
     "@eslint/js": "^9.13.0",
     "@stylistic/eslint-plugin": "^2.9.0",
     "@types/node": "^22",
+    "@vscode/vsce": "^3.9.2",
+    "esbuild": "^0.25.12",
     "eslint": "^9.13.0",
     "typescript": "^5.9.2",
     "typescript-eslint": "^8.39.0"

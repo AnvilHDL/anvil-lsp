@@ -17,9 +17,11 @@ let client: LanguageClient;
 
 export function activate(context: ExtensionContext) {
 	// The server is implemented in node
-	const serverModule = context.asAbsolutePath(
-		path.join('server', 'out', 'server.js')
-	);
+	// The packaged extension bundles the client and server together in dist/;
+	// in development, the server is built separately.
+	const serverModule = path.basename(__dirname) === 'dist'
+		? path.join(__dirname, 'server.js')
+		: context.asAbsolutePath(path.join('server', 'out', 'server.js'));
 
 	// If the extension is launched in debug mode then the debug server options are used
 	// Otherwise the run options are used

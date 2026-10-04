@@ -1,0 +1,11 @@
+# Package only the bundled extension and its assets.
+**
+!dist/extension.js
+!dist/server.js
+!images/**
+!grammar.json
+!anvil.configuration.json
+!package.json
+!README.md
+!CHANGELOG.md
+!LICENSE
