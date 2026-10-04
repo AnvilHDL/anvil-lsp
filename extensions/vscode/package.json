@@ -27,7 +27,11 @@
         "extensions": [
           ".anvil"
         ],
-        "configuration": "./anvil.configuration.json"
+        "configuration": "./anvil.configuration.json",
+        "icon": {
+          "light": "./images/anvil-file.svg",
+          "dark": "./images/anvil-file.svg"
+        }
       }
     ],
     "configuration": {
