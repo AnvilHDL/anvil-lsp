@@ -48,14 +48,25 @@ The compiler branch may be rebased. Run `./update.sh submodules` to resynchronis
 
 ### VS Code
 
-Install **AnvilHDL** (`anvilhdl.anvil-lsp`) from the Extensions view, or build it from source:
+Install **anvil-lsp** from the [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=anvilhdl.anvil-lsp): open the Extensions view (`Ctrl/Cmd + Shift + X`), search for `anvil-lsp`, and click **Install**. Or run:
+
+```bash
+code --install-extension anvilhdl.anvil-lsp
+```
+
+Each [GitHub release](https://github.com/AnvilHDL/anvil-lsp/releases) also provides the `.vsix` package, which you can install with **Extensions: Install from VSIX...**.
+
+<details>
+    <summary>Build from source</summary>
 
 ```bash
 cd anvil-lsp/extensions/vscode
 npm install && npm run build
 ```
 
-Then run **Developer: Install Extension from Location...** from the Command Palette and select `extensions/vscode`. To create an installable package instead, run `npm run package` and use **Extensions: Install from VSIX...**.
+Then run **Developer: Install Extension from Location...** from the Command Palette and select `extensions/vscode`, or run `npm run package` to create a `.vsix`.
+
+</details>
 
 ### Vim/Neovim (coc.nvim)
 
