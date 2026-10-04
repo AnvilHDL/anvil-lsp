@@ -83,7 +83,7 @@ The server tests depend on a working `bin/anvil`, so a compiler build is normall
 Clone with submodules if possible:
 
 ```bash
-git clone --recurse-submodules https://github.com/focs-lab/anvil-lsp.git
+git clone --recurse-submodules https://github.com/AnvilHDL/anvil-lsp.git
 ```
 
 If you already cloned without submodules:

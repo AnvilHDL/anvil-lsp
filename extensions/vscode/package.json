@@ -4,6 +4,7 @@
   "description": "Anvil Language Server VS Code Extension",
   "author": "Wern Lim <dev@wern.cc>",
   "license": "MIT",
+  "icon": "images/icon.png",
   "main": "./client/out/extension",
   "categories": [],
   "keywords": [

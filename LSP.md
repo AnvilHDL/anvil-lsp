@@ -1,55 +1,57 @@
-## Anvil Language Server Protocol (LSP) Support
+# Feature Support
 
-**Progress:**
+Status of Language Server Protocol features. Several features depend on annotations in the compiler's AST output; where that support is incomplete, the feature is implemented in the language server but results may be missing or inaccurate.
 
-- ✅ Inline Diagnostics
-    - ✅ Compile Errors
-    - ⚠️ Compile Warnings
-- ✅ Hover Information
-    - ✅ Definitions and types
-    - ⚠️ Lifetimes and timings
-    - ❌ Documentation
-    - ✅ Anvil syntax help
-- ✅ Go to Definition
-    - Requires compiler annotations for definitions.
-- ⚠️ Go to Type Definition
-    - Requires compiler annotations for type definitions.
-- ✅ Find All References
-    - Only works within the same file.
-- ✅ Signature Help
-    - ✅ Function call arguments (`call <identifier>(<args>)`)
-    - ✅ Endpoint message send arguments (`send <endpoint>.<message>(<args>)`)
-    - ✅ Record init field values (`Rec::{<field> = <value>; ... }`)
-    - ✅ Spawn process arguments (`spawn <proc>(<args>)`)
-- ✅ Autocompletion
-    - ✅ Anvil keywords
-    - ✅ Document symbols
-    - ✅ Context-aware suggestions
-        - ✅ Function call syntax (`call <identifier>(<args>)`)
-        - ✅ Endpoint message send/receive (`send`/`recv`) syntax
-        - ✅ Register read (`*`) syntax
-        - ✅ Register assign (`set`) syntax
-        - ✅ Enum value syntax (`Enum::value`) syntax
-        - ❌ Record init (`Rec::{field =`) syntax
-        - ⏳ Record read (`.field`) syntax
-        - ✅ Type annotation syntax (`<identifier> : <type>`)
-        - ✅ Lifetime annotation syntax (`chan { <left/right> ... : <lifetime> }`)
-        - ⏳ Datatype-matched parameter values
-    - ✅ Snippets
-        - ✅ Automatic delimiter insertion
-        - ✅ Function call snippet (`call <identifier>(<args>)`)
-        - ✅ Record init snippet (`Rec::{<field> = <value>; ... }`)
-        - ✅ Spawn process snippet (`spawn <proc>(<args>)`)
-- ✅ Inlay Hints
-    - ⚠️ Lifetime and timings
-        - ⚠️ Clock Cycle indicators
-        - ⚠️ Lifetime indicators
-- ⏳ Rename/Refactor symbol
-    - Requires compiler annotations for all symbol reference locations.
+| Status | Meaning |
+| --- | --- |
+| ✅ | Supported |
+| ⚠️ | Implemented; requires further compiler support to be complete |
+| ⏳ | Not implemented; requires compiler support |
+| ❌ | Not implemented |
 
-**Legend:**
-- ✅ Supported and operational
-- ⚠️ Supported by language server; requires compiler updates to be fully operational
-- ⚙️ WIP / incomplete support
-- ⏳ Not supported; requires compiler updates to implement support
-- ❌ Not supported
+## Diagnostics
+
+- ✅ Compile errors
+- ⚠️ Compile warnings
+
+## Hover
+
+- ✅ Definitions and types
+- ✅ Anvil syntax help
+- ⚠️ Lifetimes and timings
+- ❌ Documentation comments
+
+## Navigation
+
+- ✅ Go to definition
+- ⚠️ Go to type definition
+- ✅ Find all references (current file only)
+- ⏳ Rename symbol (requires all reference locations from the compiler)
+
+## Signature Help
+
+- ✅ Function calls: `call f(...)`
+- ✅ Message sends: `send ep.msg(...)`
+- ✅ Record initialisers: `Rec::{ field = value; ... }`
+- ✅ Spawns: `spawn Proc(...)`
+
+## Completion
+
+- ✅ Keywords
+- ✅ Document symbols
+- ✅ Snippets for function calls, record initialisers and spawns, with automatic delimiter insertion
+- Context-aware suggestions:
+    - ✅ Function calls (`call`)
+    - ✅ Message send and receive (`send`, `recv`)
+    - ✅ Register read (`*`) and assignment (`set`)
+    - ✅ Enum variants (`Enum::`)
+    - ✅ Type annotations (`name : type`)
+    - ✅ Lifetime annotations in channel definitions
+    - ⏳ Record field access (`.field`)
+    - ⏳ Values matching parameter data types
+    - ❌ Record initialiser fields (`Rec::{ field =`)
+
+## Inlay Hints
+
+- ⚠️ Clock-cycle indicators
+- ⚠️ Lifetime indicators
